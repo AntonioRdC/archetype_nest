@@ -5,8 +5,9 @@ const getConfiguration = () => ({
         name,
         version,
         description,
-        port: process.env.APP_PORT || 3000,
-        prefix: process.env.APP_PREFIX || '/api',
+        port: process.env.APP_PORT,
+        prefix: process.env.APP_PREFIX,
+        server: `http://localhost:${process.env.APP_PORT}${process.env.APP_PREFIX}`,
     },
     mongodb: {
         uri: process.env.MONGODB_URI,
