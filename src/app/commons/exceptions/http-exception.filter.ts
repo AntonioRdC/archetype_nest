@@ -12,7 +12,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     catch(exception: unknown, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
-        const request = ctx.getRequest<Request>();
 
         const status =
             exception instanceof HttpException
@@ -26,8 +25,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
         response.status(status).json({
             statusCode: status,
-            timestamp: new Date().toISOString(),
-            path: request.url,
             error: message,
         });
     }

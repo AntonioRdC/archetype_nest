@@ -34,7 +34,7 @@ class App {
             .setTitle(this.defaultConfig.app.name)
             .setDescription(this.defaultConfig.app.description)
             .setVersion(this.defaultConfig.app.version)
-            .addServer(this.defaultConfig.app.prefix)
+            .addServer(this.defaultConfig.app.server)
             .build();
         const document = SwaggerModule.createDocument(
             this.app,
