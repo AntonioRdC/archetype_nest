@@ -1,1 +1,284 @@
-{"openapi":"3.0.0","paths":{"/healthcheck":{"get":{"operationId":"HealthcheckController_status","parameters":[],"responses":{"200":{"description":"Application health status","content":{"application/json":{"schema":{"$ref":"#/components/schemas/StatusHealthcheckResDto"}}}}},"summary":"Get application health status","tags":["Healthcheck"]}},"/user":{"post":{"operationId":"UserController_createUser","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserReqDto"}}}},"responses":{"201":{"description":"","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserResDto"}}}},"400":{"description":"Client specified an invalid argument, request body or query param"},"401":{"description":"Client not authenticated"},"403":{"description":"Client does not have sufficient permissions to perform this action"},"404":{"description":"A specified resource is not found"},"500":{"description":"Internal Server Error"},"503":{"description":"Service unavailable"}},"summary":"Create user","tags":["User"]},"get":{"operationId":"UserController_findAllUsers","parameters":[],"responses":{"200":{"description":"","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/UserResDto"}}}}},"400":{"description":"Client specified an invalid argument, request body or query param"},"401":{"description":"Client not authenticated"},"403":{"description":"Client does not have sufficient permissions to perform this action"},"404":{"description":"A specified resource is not found"},"500":{"description":"Internal Server Error"},"503":{"description":"Service unavailable"}},"summary":"Find all users","tags":["User"]}},"/user/{id}":{"get":{"operationId":"UserController_findUserById","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"description":"","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserResDto"}}}},"400":{"description":"Client specified an invalid argument, request body or query param"},"401":{"description":"Client not authenticated"},"403":{"description":"Client does not have sufficient permissions to perform this action"},"404":{"description":"A specified resource is not found"},"500":{"description":"Internal Server Error"},"503":{"description":"Service unavailable"}},"summary":"Find one user","tags":["User"]},"put":{"operationId":"UserController_updateUserById","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"string"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserReqDto"}}}},"responses":{"200":{"description":"","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserResDto"}}}},"400":{"description":"Client specified an invalid argument, request body or query param"},"401":{"description":"Client not authenticated"},"403":{"description":"Client does not have sufficient permissions to perform this action"},"404":{"description":"A specified resource is not found"},"500":{"description":"Internal Server Error"},"503":{"description":"Service unavailable"}},"summary":"Update user","tags":["User"]},"delete":{"operationId":"UserController_removeUserById","parameters":[{"name":"id","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"204":{"description":""},"400":{"description":"Client specified an invalid argument, request body or query param"},"401":{"description":"Client not authenticated"},"403":{"description":"Client does not have sufficient permissions to perform this action"},"404":{"description":"A specified resource is not found"},"500":{"description":"Internal Server Error"},"503":{"description":"Service unavailable"}},"summary":"Delete user","tags":["User"]}}},"info":{"title":"archetype_nest","description":"NestJS Archetype","version":"1.0","contact":{}},"tags":[],"servers":[{"url":"http://localhost:3000/api"}],"components":{"schemas":{"DatabaseStatusResDto":{"type":"object","properties":{"status":{"type":"string"},"latency":{"type":"number"}},"required":["status","latency"]},"StatusHealthcheckResDto":{"type":"object","properties":{"appName":{"type":"string"},"appVersion":{"type":"string"},"timestamp":{"type":"string"},"uptime":{"type":"number"},"database":{"$ref":"#/components/schemas/DatabaseStatusResDto"}},"required":["appName","appVersion","timestamp","uptime","database"]},"UserReqDto":{"type":"object","properties":{"name":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"},"age":{"type":"number"}},"required":["name","email","password","age"]},"UserResDto":{"type":"object","properties":{"_id":{"type":"string"},"name":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"},"age":{"type":"number"},"createdAt":{"format":"date-time","type":"string"},"updatedAt":{"format":"date-time","type":"string"}},"required":["_id","name","email","password","age","createdAt","updatedAt"]}}}}
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/healthcheck": {
+            "get": {
+                "operationId": "HealthcheckController_status",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Application health status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StatusHealthcheckResDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Get application health status",
+                "tags": ["Healthcheck"]
+            }
+        },
+        "/user": {
+            "post": {
+                "operationId": "UserController_createUser",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserReqDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Client specified an invalid argument, request body or query param"
+                    },
+                    "401": { "description": "Client not authenticated" },
+                    "403": {
+                        "description": "Client does not have sufficient permissions to perform this action"
+                    },
+                    "404": {
+                        "description": "A specified resource is not found"
+                    },
+                    "500": { "description": "Internal Server Error" },
+                    "503": { "description": "Service unavailable" }
+                },
+                "summary": "Create user",
+                "tags": ["User"]
+            },
+            "get": {
+                "operationId": "UserController_findAllUsers",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserResDto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Client specified an invalid argument, request body or query param"
+                    },
+                    "401": { "description": "Client not authenticated" },
+                    "403": {
+                        "description": "Client does not have sufficient permissions to perform this action"
+                    },
+                    "404": {
+                        "description": "A specified resource is not found"
+                    },
+                    "500": { "description": "Internal Server Error" },
+                    "503": { "description": "Service unavailable" }
+                },
+                "summary": "Find all users",
+                "tags": ["User"]
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "operationId": "UserController_findUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Client specified an invalid argument, request body or query param"
+                    },
+                    "401": { "description": "Client not authenticated" },
+                    "403": {
+                        "description": "Client does not have sufficient permissions to perform this action"
+                    },
+                    "404": {
+                        "description": "A specified resource is not found"
+                    },
+                    "500": { "description": "Internal Server Error" },
+                    "503": { "description": "Service unavailable" }
+                },
+                "summary": "Find one user",
+                "tags": ["User"]
+            },
+            "put": {
+                "operationId": "UserController_updateUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserReqDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Client specified an invalid argument, request body or query param"
+                    },
+                    "401": { "description": "Client not authenticated" },
+                    "403": {
+                        "description": "Client does not have sufficient permissions to perform this action"
+                    },
+                    "404": {
+                        "description": "A specified resource is not found"
+                    },
+                    "500": { "description": "Internal Server Error" },
+                    "503": { "description": "Service unavailable" }
+                },
+                "summary": "Update user",
+                "tags": ["User"]
+            },
+            "delete": {
+                "operationId": "UserController_removeUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "" },
+                    "400": {
+                        "description": "Client specified an invalid argument, request body or query param"
+                    },
+                    "401": { "description": "Client not authenticated" },
+                    "403": {
+                        "description": "Client does not have sufficient permissions to perform this action"
+                    },
+                    "404": {
+                        "description": "A specified resource is not found"
+                    },
+                    "500": { "description": "Internal Server Error" },
+                    "503": { "description": "Service unavailable" }
+                },
+                "summary": "Delete user",
+                "tags": ["User"]
+            }
+        }
+    },
+    "info": {
+        "title": "archetype_nest",
+        "description": "NestJS Archetype",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [{ "url": "http://localhost:3000/api" }],
+    "components": {
+        "schemas": {
+            "DatabaseStatusResDto": {
+                "type": "object",
+                "properties": {
+                    "status": { "type": "string" },
+                    "latency": { "type": "number" }
+                },
+                "required": ["status", "latency"]
+            },
+            "StatusHealthcheckResDto": {
+                "type": "object",
+                "properties": {
+                    "appName": { "type": "string" },
+                    "appVersion": { "type": "string" },
+                    "timestamp": { "type": "string" },
+                    "uptime": { "type": "number" },
+                    "database": {
+                        "$ref": "#/components/schemas/DatabaseStatusResDto"
+                    }
+                },
+                "required": [
+                    "appName",
+                    "appVersion",
+                    "timestamp",
+                    "uptime",
+                    "database"
+                ]
+            },
+            "UserReqDto": {
+                "type": "object",
+                "properties": {
+                    "name": { "type": "string" },
+                    "email": { "type": "string" },
+                    "password": { "type": "string" },
+                    "age": { "type": "number" }
+                },
+                "required": ["name", "email", "password", "age"]
+            },
+            "UserResDto": {
+                "type": "object",
+                "properties": {
+                    "_id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "email": { "type": "string" },
+                    "password": { "type": "string" },
+                    "age": { "type": "number" },
+                    "createdAt": { "format": "date-time", "type": "string" },
+                    "updatedAt": { "format": "date-time", "type": "string" }
+                },
+                "required": [
+                    "_id",
+                    "name",
+                    "email",
+                    "password",
+                    "age",
+                    "createdAt",
+                    "updatedAt"
+                ]
+            }
+        }
+    }
+}

@@ -1,7 +1,5 @@
-const path = require('path');
-
-module.exports = {
-    rootDir: path.resolve(__dirname, './'),
+export default {
+    rootDir: './',
     verbose: true,
     preset: 'ts-jest',
     testEnvironment: 'node',
@@ -15,12 +13,6 @@ module.exports = {
         '^@infra/(.*)$': '<rootDir>/src/infra/$1',
         '^@config/(.*)$': '<rootDir>/src/config/$1',
     },
-    collectCoverage: true,
-    collectCoverageFrom: [
-        'src/**/*.{js,ts}',
-        '!src/**/*.{module,dto}.{js,ts}',
-        '!src/config/config.ts',
-        '!src/main.ts',
-    ],
+    coverageReporters: ['text'],
     testMatch: ['<rootDir>/tests/**/*.unit.ts'],
 };
